@@ -70,6 +70,10 @@ class TasksTableViewController: UITableViewController {
             cell.cardView.backgroundColor = UIColor(red:0.14, green:0.22, blue:0.51, alpha:1)
             cell.cardView.layer.borderColor = UIColor(red:0.14, green:0.22, blue:0.51, alpha:1).CGColor
         }
+        else{
+            cell.cardView.backgroundColor = UIColor(red:0, green:0.6, blue:0.89, alpha:1)
+            cell.cardView.layer.borderColor = UIColor(red:0, green:0.6, blue:0.89, alpha:1).CGColor
+        }
         let task = self.tasks[indexPath.row]
         cell.taskNameLabel.text = task["name"] as? String
         var constraintModifierString = ""

@@ -7,64 +7,45 @@ Parse.Cloud.define("hello", function(request, response) {
 
 Parse.Cloud.afterSave("Task", function(request) {
     if (request.object.existed() == false) {
-        var senderObject = request.object.get('sender');
-        var forCharmObject = request.object.get('forCharm');
-        // Get sender user object
-        var senderQuery = new Parse.Query("_User");
-        senderQuery.get(senderObject.id, {
-            success: function(senderObjectReal) {
-                // The object was retrieved successfully.
-                console.log(senderObjectReal);
-                var senderName = senderObjectReal.get("firstName") + " " + senderObjectReal.get("lastName").charAt(0) + ".";
-                var charmQuery = new Parse.Query("Charm");
-                charmQuery.get(forCharmObject.id, {
-                    success: function(charmObjectReal) {
-                        // The object was retrieved successfully.
-                        var charmName = charmObjectReal.get("name");
-
-                        var receiverNotificationText = senderName + " added a Moment to " + charmName + ".";
-                        var receiverPushQuery = new Parse.Query(Parse.Installation);
-				        var ownerObject = charmObjectReal.get('owner');
-                        var targetUserObject;
-                        console.log(senderObject);
-                        console.log(ownerObject);
-                        if (senderObject.id === ownerObject.id){
-                            targetUserObject = charmObjectReal.get("gifter");
-                        }
-                        else{
-                            targetUserObject = ownerObject;
-                        }
-                        receiverPushQuery.equalTo('deviceType', 'ios');
-                        receiverPushQuery.equalTo('currentUser', targetUserObject);
-                        Parse.Push.send({
-                            where: receiverPushQuery, // Set our Installation query
-                            data: {
-                                alert: receiverNotificationText,
-                                sound: "",
-                                subtitle: charmObjectReal.id,
-                                title: "",
-                            }
-                        }, {
-                            success: function() {
-                                console.log("success!");
-                                    // Push was successful
-                                console.log(receiverPushQuery);
-                            },
-                            error: function(error) {
-                                throw "Got an error " + error.code + " : " + error.message;
-                            }
-                        });
-                    },
-                    error: function(error) {
-                    }
-                    });
+    	if (request.object.get('constraintType') == "Time"){
+			// if constraintType is Time, schedule push to elder at next occurance of constraintTime
+			var pushTime = new Date();
+			var hour = request.object.get('constraintTime').split(":")[0];
+			var minute = request.object.get('constraintTime').split(":")[1];
+			pushTime.setUTCHours(hour);
+			pushTime.setUTCMinutes(minute);
+			pushTime.setUTCDate(pushTime.getDate() + 1);
+			console.log("raw time is " + pushTime)
+			var finalPushTime = pushTime.toISOString;
+			console.log("finalPushTime time is " + finalPushTime)
+			var elderPushQuery = new Parse.Query(Parse.Installation);
+			var elderNotificationText = "Did you " + request.object.get('name') + "?";
+			elderPushQuery.equalTo('currentUser', request.object.get('elder'));
+            Parse.Push.send({
+                where: elderPushQuery, // Set our Installation query
+                data: {
+                    alert: elderNotificationText,
+                    sound: "",
+                    subtitle: "",
+                    title: "",
+                    category: "inTouchCategory"
                 },
-            error: function(object, error) {
-            	console.log(error.code + error.message);
-
-            }
-        });//senderquery
-
+                push_time: finalPushTime
+            }, {
+                success: function() {
+                    console.log("success!");
+                        // Push was successful
+                    console.log(elderPushQuery);
+                    console.log(finalPushTime);
+                    console.log(elderNotificationText);
+                },
+                error: function(error) {
+                    console.log(finalPushTime);
+					console.log(request.object.get('constraintTime'));
+                    throw "Got an error " + error.code + " : " + error.message;
+                }
+            });
+        }//senderquery
     }
     else{
     	// Task existed
@@ -73,3 +54,7 @@ Parse.Cloud.afterSave("Task", function(request) {
     	// If false, 
     }
 });
+
+function convertDateToUTC(date) { 
+    return new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds()); 
+}
