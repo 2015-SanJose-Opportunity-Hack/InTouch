@@ -31,6 +31,11 @@ class TasksTableViewController: UITableViewController {
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.addTarget(self, action: "loadTasks", forControlEvents: UIControlEvents.ValueChanged)
 
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor(red:0.14, green:0.22, blue:0.51, alpha:1)]
+        self.navigationController!.navigationBar.titleTextAttributes = titleDict as? [String : AnyObject]
+
+        
+        
         if (PFUser.currentUser() != nil){
             self.loadTasks()
         }
@@ -61,21 +66,33 @@ class TasksTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("TaskCardTableViewCell") as! TaskCardTableViewCell
+        if (indexPath.row % 2 == 0){
+            cell.cardView.backgroundColor = UIColor(red:0.14, green:0.22, blue:0.51, alpha:1)
+            cell.cardView.layer.borderColor = UIColor(red:0.14, green:0.22, blue:0.51, alpha:1).CGColor
+        }
         let task = self.tasks[indexPath.row]
         cell.taskNameLabel.text = task["name"] as? String
         var constraintModifierString = ""
         if (task["constraintType"] as? String == "Time"){
             cell.mainConstraintLabel.text = task["constraintTime"] as? String
             let modifierString = task["maxDelayedMinutes"]
-            constraintModifierString = "\(modifierString)"
+            constraintModifierString = "\(modifierString)-minute response window"
         }
         else{
-            cell.mainConstraintLabel.text = task["constraintActivity"] as? String
+            let constraintActivityNumber = task["constraintActivity"] as? Int
+            cell.mainConstraintLabel.text = "\(constraintActivityNumber!) MINS"
             let modifierString = task["maxSlackedMinutes"]
-            constraintModifierString = "\(modifierString)"
+            constraintModifierString = "\(modifierString)-minute tolerance"
         }
         let triggerArray = task["constraintTriggers"] as! [String]
-        cell.rangeAndTriggerLabel.text = "Modifier: \(constraintModifierString), Triggers: \(triggerArray)"
+        var triggersString = ""
+        for trigger in triggerArray{
+            triggersString += trigger
+            if (triggerArray.indexOf(trigger) < triggerArray.count - 1){
+                triggersString += ", "
+            }
+        }
+        cell.rangeAndTriggerLabel.text = "\(constraintModifierString)\n\(triggersString) if no response."
         return cell
     }
 

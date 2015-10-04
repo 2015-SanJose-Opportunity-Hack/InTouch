@@ -15,7 +15,7 @@ class TaskCardTableViewCell: UITableViewCell {
     var taskNameLabel:UILabel!
     var separator:UIView!
     var rangeAndTriggerLabel:UILabel!
-    
+    var keyColor:UIColor = UIColor(red:0, green:0.6, blue:0.89, alpha:1)
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -28,8 +28,8 @@ class TaskCardTableViewCell: UITableViewCell {
         self.cardView.layer.borderWidth = 1
         self.cardView.layer.cornerRadius = 4
         self.cardView.clipsToBounds = true
-        self.cardView.layer.borderColor = UIColor(red:0.84, green:0.93, blue:0.98, alpha:1).CGColor
-        self.cardView.backgroundColor = UIColor.whiteColor()
+        self.cardView.layer.borderColor = self.keyColor.CGColor
+        self.cardView.backgroundColor = self.keyColor
         self.contentView.addSubview(self.cardView)
         
         self.mainConstraintLabel = UILabel(frame: CGRectZero)
@@ -37,6 +37,7 @@ class TaskCardTableViewCell: UITableViewCell {
         self.mainConstraintLabel.numberOfLines = 1
         self.mainConstraintLabel.text = "MAIN CONSTRAINT"
         self.mainConstraintLabel.font = UIFont.systemFontOfSize(24, weight: UIFontWeightBold)
+        self.mainConstraintLabel.textColor = UIColor.whiteColor()
         self.cardView.addSubview(self.mainConstraintLabel)
 
         self.taskNameLabel = UILabel(frame: CGRectZero)
@@ -44,11 +45,12 @@ class TaskCardTableViewCell: UITableViewCell {
         self.taskNameLabel.numberOfLines = 1
         self.taskNameLabel.text = "TASK NAME"
         self.taskNameLabel.font = UIFont.systemFontOfSize(24, weight: UIFontWeightLight)
+        self.taskNameLabel.textColor = UIColor.whiteColor()
         self.cardView.addSubview(self.taskNameLabel)
         
         self.separator = UIView(frame: CGRectZero)
         self.separator.translatesAutoresizingMaskIntoConstraints = false
-        self.separator.backgroundColor = UIColor.blackColor()
+        self.separator.backgroundColor = UIColor.whiteColor()
         self.cardView.addSubview(self.separator)
         
         self.rangeAndTriggerLabel = UILabel(frame: CGRectZero)
@@ -56,6 +58,7 @@ class TaskCardTableViewCell: UITableViewCell {
         self.rangeAndTriggerLabel.numberOfLines = 0
         self.rangeAndTriggerLabel.text = "RANGE AND TRIGGER LABEL"
         self.rangeAndTriggerLabel.font = UIFont.systemFontOfSize(16, weight: UIFontWeightLight)
+        self.rangeAndTriggerLabel.textColor = UIColor.whiteColor()
         self.cardView.addSubview(self.rangeAndTriggerLabel)
         
         let viewsDictionary = ["cardView":self.cardView, "mainConstraintLabel":self.mainConstraintLabel, "taskNameLabel":self.taskNameLabel, "separator":self.separator, "rangeAndTriggerLabel":self.rangeAndTriggerLabel]

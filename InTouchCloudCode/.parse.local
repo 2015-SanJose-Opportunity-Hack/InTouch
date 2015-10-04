@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "InTouch": {
+      "applicationId": "NhJGrdxkmmGolldGpNjToTZY009P6DdNEgGYVl3J"
+    },
+    "_default": {
+      "link": "InTouch"
+    }
+  }
+}

@@ -13,6 +13,9 @@ class ChatViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor(red:0.14, green:0.22, blue:0.51, alpha:1)]
+        self.navigationController!.navigationBar.titleTextAttributes = titleDict as? [String : AnyObject]
+
         // Do any additional setup after loading the view.
     }
 

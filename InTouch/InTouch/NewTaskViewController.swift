@@ -21,6 +21,9 @@ class NewTaskViewController: XLFormViewController {
         let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "doneButtonTapped")
         self.navigationItem.rightBarButtonItem = doneButton
         
+        
+        let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor(red:0.14, green:0.22, blue:0.51, alpha:1)]
+        self.navigationController!.navigationBar.titleTextAttributes = titleDict as? [String : AnyObject]
     }
     
     required init?(coder aDecoder: NSCoder) {

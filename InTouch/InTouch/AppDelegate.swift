@@ -92,7 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
             dict[NSLocalizedFailureReasonErrorKey] = failureReason
 
-            dict[NSUnderlyingErrorKey] = error as NSError
+            dict[NSUnderlyingErrorKey] = error as? NSError
             let wrappedError = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
             // Replace this with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
@@ -219,8 +219,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("affirmAndText with response info \(responseInfo[UIUserNotificationActionResponseTypedTextKey]!) and taskId is \(taskId)")
                 task["responded"] = true
                 task["responseMessage"] = responseInfo[UIUserNotificationActionResponseTypedTextKey]!
+                let taskName = task["name"] as! String
+                let data = [
+                    "alert" : "\(PFUser.currentUser()?.username) Did \(taskName) and \(responseInfo[UIUserNotificationActionResponseTypedTextKey]!)",
+                    "badge" : 1,
+                    "category" : "inTouchCategory"
+                ]
+                let push = PFPush()
+                push.setQuery(PFQuery(className: "Installation").whereKey("currentUser", equalTo: task["caregiver"]))
+                push.setData(data as? [NSObject : AnyObject])
                 task.saveInBackgroundWithBlock({(success, error) -> Void in
-                    completionHandler()
+                    push.sendPushInBackgroundWithBlock({(success, error) -> Void in
+                        completionHandler()
+                    })
                 })
             })
         }
