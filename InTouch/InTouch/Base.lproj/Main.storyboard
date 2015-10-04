@@ -34,6 +34,7 @@
                     <connections>
                         <segue destination="y5b-np-HV0" kind="presentation" identifier="showAccount" id="KhD-xD-abi"/>
                         <segue destination="lGH-Aw-d57" kind="presentation" identifier="showNewTask" id="KNe-Uf-96e"/>
+                        <segue destination="qLO-Aw-EQH" kind="presentation" identifier="presentLoginDialog" id="brg-Ng-DBZ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="krt-r2-Nrf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -185,7 +186,6 @@
                     <connections>
                         <segue destination="ox1-s3-2bH" kind="relationship" relationship="viewControllers" id="gAn-TE-iSb"/>
                         <segue destination="D6x-J6-0X5" kind="relationship" relationship="viewControllers" id="3zu-7y-kv9"/>
-                        <segue destination="qLO-Aw-EQH" kind="presentation" identifier="presentLoginDialog" id="baL-7o-IOg"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rAj-YE-NeD" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -31,11 +31,16 @@ class TasksTableViewController: UITableViewController {
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.addTarget(self, action: "loadTasks", forControlEvents: UIControlEvents.ValueChanged)
 
+        if (PFUser.currentUser() != nil){
+            self.loadTasks()
+        }
+
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         if (PFUser.currentUser() == nil){
             print("currentUser doesn't exist")
-        }
-        else{
-            self.loadTasks()
+            self.performSegueWithIdentifier("presentLoginDialog", sender: self)
         }
     }
 
@@ -107,6 +112,11 @@ class TasksTableViewController: UITableViewController {
             let destinationVC = segue.destinationViewController as! NewTaskNavigationViewController
             let newTaskVC = destinationVC.childViewControllers[0] as! NewTaskViewController
             newTaskVC.parentVC = self
+        }
+        else if (segue.identifier == "showAccount"){
+            let destinationVC = segue.destinationViewController as! UINavigationController
+            let accountVC = destinationVC.childViewControllers[0] as! AccountViewController
+            accountVC.parentVC = self
         }
     }
     

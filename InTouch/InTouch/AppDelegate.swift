@@ -32,13 +32,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         PFInstallation.currentInstallation().saveInBackground()
 
-        let userNotificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-        UIApplication.sharedApplication().registerUserNotificationSettings(userNotificationSettings)
-        application.registerForRemoteNotifications()
+
 
         XLFormViewController.cellClassesForRowDescriptorTypes()[XLFormRowDescriptorTypeFloatLabeledTextField] = FloatLabeledTextFieldCell.self
 
-        
+        self.setupNotificationSettings(application)
         return true
     }
 
@@ -146,6 +144,89 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return image
     }
 
+    func setupNotificationSettings(application:UIApplication) {
+        let notificationSettings: UIUserNotificationSettings! = UIApplication.sharedApplication().currentUserNotificationSettings()
+        
+        if (notificationSettings.types == UIUserNotificationType.None){
+            // Specify the notification types.
+            let notificationTypes: UIUserNotificationType = [UIUserNotificationType.Alert, UIUserNotificationType.Sound, UIUserNotificationType.Sound]
+            
+            
+            // Specify the notification actions.
+            let affirmAction = UIMutableUserNotificationAction()
+            affirmAction.identifier = "affirm"
+            affirmAction.title = "Yes"
+            affirmAction.activationMode = UIUserNotificationActivationMode.Background
+            affirmAction.destructive = false
+            affirmAction.authenticationRequired = false
+            
+            let affirmAndTextAction = UIMutableUserNotificationAction()
+            affirmAndTextAction.identifier = "affirmAndText"
+            affirmAndTextAction.title = "Yes and..."
+            affirmAndTextAction.activationMode = UIUserNotificationActivationMode.Background
+            affirmAndTextAction.destructive = false
+            affirmAndTextAction.authenticationRequired = false
+            affirmAndTextAction.behavior = UIUserNotificationActionBehavior.TextInput
+            
+//            var trashAction = UIMutableUserNotificationAction()
+//            trashAction.identifier = "trashAction"
+//            trashAction.title = "Delete list"
+//            trashAction.activationMode = UIUserNotificationActivationMode.Background
+//            trashAction.destructive = true
+//            trashAction.authenticationRequired = true
+            
+            let actionsArray = NSArray(objects: affirmAndTextAction, affirmAction)
+            let actionsArrayMinimal = NSArray(objects: affirmAndTextAction, affirmAction)
+            
+            // Specify the category related to the above actions.
+            let inTouchCategory = UIMutableUserNotificationCategory()
+            inTouchCategory.identifier = "inTouchCategory"
+            inTouchCategory.setActions(actionsArray as? [UIUserNotificationAction], forContext: UIUserNotificationActionContext.Default)
+            inTouchCategory.setActions(actionsArrayMinimal as? [UIUserNotificationAction], forContext: UIUserNotificationActionContext.Minimal)
+            
+            
+            let categoriesForSettings = NSSet(objects: inTouchCategory)
+            
+            
+            // Register the notification settings.
+            let newNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: categoriesForSettings as? Set<UIUserNotificationCategory>)
+            UIApplication.sharedApplication().registerUserNotificationSettings(newNotificationSettings)
+            application.registerForRemoteNotifications()
+        }
+    }
+    
+    func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [NSObject : AnyObject], withResponseInfo responseInfo: [NSObject : AnyObject], completionHandler: () -> Void) {
+        if (identifier == "affirm"){
+            let taskId = userInfo["taskId"] as! String
+            let taskQuery = PFQuery(className: "Task")
+            taskQuery.whereKey("objectId", equalTo: taskId)
+            taskQuery.findObjectsInBackgroundWithBlock({(objects, error) -> Void in
+                let task = objects![0]
+                print("affirm with response info")
+                task["responded"] = true
+                task.saveInBackgroundWithBlock({(success, error) -> Void in
+                    completionHandler()
+                })
+            })
 
+        }
+        else if (identifier == "affirmAndText"){
+            let taskId = userInfo["taskId"] as! String
+            let taskQuery = PFQuery(className: "Task")
+            taskQuery.whereKey("objectId", equalTo: taskId)
+            taskQuery.findObjectsInBackgroundWithBlock({(objects, error) -> Void in
+                let task = objects![0]
+                print("affirmAndText with response info \(responseInfo[UIUserNotificationActionResponseTypedTextKey]!) and taskId is \(taskId)")
+                task["responded"] = true
+                task["responseMessage"] = responseInfo[UIUserNotificationActionResponseTypedTextKey]!
+                task.saveInBackgroundWithBlock({(success, error) -> Void in
+                    completionHandler()
+                })
+            })
+        }
+        else{
+            completionHandler()
+        }
+    }
 }
 

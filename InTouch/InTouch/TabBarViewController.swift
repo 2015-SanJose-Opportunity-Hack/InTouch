@@ -20,7 +20,7 @@ class TabBarViewController: UITabBarController {
     
     override func viewWillAppear(animated: Bool) {
         if (PFUser.currentUser() == nil){
-            self.performSegueWithIdentifier("presentLoginDialog", sender: self)
+//            self.performSegueWithIdentifier("presentLoginDialog", sender: self)
         }
     }
 

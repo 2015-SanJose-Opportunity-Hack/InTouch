@@ -167,6 +167,7 @@ class NewTaskViewController: XLFormViewController {
             task["constraintTriggers"] = triggers
             task["caregiver"] = PFUser.currentUser()
             task["elder"] = PFUser.currentUser()!["connection"] as! PFUser
+            task["responded"] = false
             task.saveInBackgroundWithBlock({(success, error) -> Void in
                 self.dismissViewControllerAnimated(true, completion: {() -> Void in
                     self.parentVC.loadTasks()

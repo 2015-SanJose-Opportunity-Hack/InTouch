@@ -10,6 +10,7 @@ import UIKit
 
 class AccountViewController: UIViewController {
 
+    var parentVC:TasksTableViewController!
     var scrollView:TPKeyboardAvoidingScrollView!
     var logoutButton:UIButton!
     
@@ -65,7 +66,9 @@ class AccountViewController: UIViewController {
 
     func logoutButtonTapped(){
         PFUser.logOutInBackgroundWithBlock({(error) -> Void in
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismissViewControllerAnimated(true, completion: {
+                self.parentVC.performSegueWithIdentifier("presentLoginDialog", sender: self.parentVC)
+            })
         })
     }
     
