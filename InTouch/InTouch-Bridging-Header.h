@@ -11,7 +11,8 @@
 
 #import "XLForm.h"
 #import "Atlas.h"
-#import "JVFloatLabeledTextField.h"
+#import <JVFloatLabeledTextField/JVFloatLabeledTextField.h>
+#import <JVFloatLabeledTextField/JVFloatLabeledTextView.h>
 #import "TPKeyboardAvoidingScrollView.h"
 #import <Parse/Parse.h>
 #import <Bolts/Bolts.h>

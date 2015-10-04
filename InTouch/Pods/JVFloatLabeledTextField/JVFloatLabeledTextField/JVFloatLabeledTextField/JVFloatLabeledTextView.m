@@ -28,8 +28,8 @@
 #import "JVFloatLabeledTextView.h"
 #import "NSString+TextDirectionality.h"
 
-static CGFloat const kFloatingLabelShowAnimationDuration = 0.3f;
-static CGFloat const kFloatingLabelHideAnimationDuration = 0.3f;
+#define kFloatingLabelShowAnimationDuration 0.3f
+#define kFloatingLabelHideAnimationDuration 0.3f
 
 @interface JVFloatLabeledTextView ()
 
@@ -65,12 +65,10 @@ static CGFloat const kFloatingLabelHideAnimationDuration = 0.3f;
 - (void)commonInit
 {
     self.startingTextContainerInsetTop = self.textContainerInset.top;
-    self.floatingLabelShouldLockToTop = YES;
+    self.floatingLabelShouldLockToTop = 1;
     self.textContainer.lineFragmentPadding = 0;
     
     _placeholderLabel = [[UILabel alloc] initWithFrame:self.frame];
-    // by default self.font is nil - so make UITextView use UILabel's default
-    self.font = _placeholderLabel.font;
     _placeholderLabel.font = self.font;
     _placeholderLabel.text = self.placeholder;
     _placeholderLabel.numberOfLines = 0;
@@ -86,11 +84,11 @@ static CGFloat const kFloatingLabelHideAnimationDuration = 0.3f;
     [self addSubview:_floatingLabel];
 	
     // some basic default fonts/colors
-    _floatingLabelFont = [self defaultFloatingLabelFont];
+    _floatingLabelFont = [UIFont boldSystemFontOfSize:12.0f];
     _floatingLabel.font = _floatingLabelFont;
     _floatingLabelTextColor = [UIColor grayColor];
     _floatingLabel.textColor = _floatingLabelTextColor;
-    _animateEvenIfNotFirstResponder = NO;
+    _animateEvenIfNotFirstResponder = 0;
     _floatingLabelShowAnimationDuration = kFloatingLabelShowAnimationDuration;
     _floatingLabelHideAnimationDuration = kFloatingLabelHideAnimationDuration;
 
@@ -123,20 +121,6 @@ static CGFloat const kFloatingLabelHideAnimationDuration = 0.3f;
 
 #pragma mark -
 
-- (UIFont *)defaultFloatingLabelFont
-{
-    UIFont *textViewFont = nil;
-    
-    if (!textViewFont && self.placeholderLabel.attributedText && self.placeholderLabel.attributedText.length > 0) {
-        textViewFont = [self.placeholderLabel.attributedText attribute:NSFontAttributeName atIndex:0 effectiveRange:NULL];
-    }
-    if (!textViewFont) {
-        textViewFont = self.placeholderLabel.font;
-    }
-    
-    return [UIFont fontWithName:textViewFont.fontName size:roundf(textViewFont.pointSize * 0.7f)];
-}
-
 - (void)setPlaceholder:(NSString *)placeholder
 {
     _placeholder = placeholder;
@@ -167,22 +151,25 @@ static CGFloat const kFloatingLabelHideAnimationDuration = 0.3f;
     [super layoutSubviews];
     [self adjustTextContainerInsetTop];
     
-    CGSize floatingLabelSize = [_floatingLabel sizeThatFits:_floatingLabel.superview.bounds.size];
+    [_placeholderLabel sizeToFit];
+    [_floatingLabel sizeToFit];
     
     _floatingLabel.frame = CGRectMake(_floatingLabel.frame.origin.x,
                                       _floatingLabel.frame.origin.y,
-                                      floatingLabelSize.width,
-                                      floatingLabelSize.height);
-    
-    CGSize placeholderLabelSize = [_placeholderLabel sizeThatFits:_placeholderLabel.superview.bounds.size];
+                                      self.frame.size.width,
+                                      _floatingLabel.bounds.size.height);
     
     CGRect textRect = [self textRect];
     
     _placeholderLabel.alpha = [self.text length] > 0 ? 0.0f : 1.0f;
     _placeholderLabel.frame = CGRectMake(textRect.origin.x, textRect.origin.y,
-                                         placeholderLabelSize.width, placeholderLabelSize.height);
+                                         _placeholderLabel.frame.size.width, _placeholderLabel.frame.size.height);
     
     [self setLabelOriginForTextAlignment];
+    
+    if (self.floatingLabelFont) {
+        _floatingLabel.font = self.floatingLabelFont;
+    }
     
     BOOL firstResponder = self.isFirstResponder;
     _floatingLabel.textColor = (firstResponder && self.text && self.text.length > 0 ?
@@ -288,7 +275,7 @@ static CGFloat const kFloatingLabelHideAnimationDuration = 0.3f;
         }
     }
     
-    _floatingLabel.frame = CGRectMake(floatingLabelOriginX + _floatingLabelXPadding, _floatingLabel.frame.origin.y,
+    _floatingLabel.frame = CGRectMake(floatingLabelOriginX, _floatingLabel.frame.origin.y,
                                       _floatingLabel.frame.size.width, _floatingLabel.frame.size.height);
     
     _placeholderLabel.frame = CGRectMake(placeholderLabelOriginX, _placeholderLabel.frame.origin.y,
@@ -310,7 +297,7 @@ static CGFloat const kFloatingLabelHideAnimationDuration = 0.3f;
 - (void)setFloatingLabelFont:(UIFont *)floatingLabelFont
 {
     _floatingLabelFont = floatingLabelFont;
-    _floatingLabel.font = _floatingLabelFont ? _floatingLabelFont : [self defaultFloatingLabelFont];
+    _floatingLabel.font = (_floatingLabelFont ? _floatingLabelFont : [UIFont boldSystemFontOfSize:12.0f]);
     self.placeholder = self.placeholder; // Force the label to lay itself out with the new font.
 }
 

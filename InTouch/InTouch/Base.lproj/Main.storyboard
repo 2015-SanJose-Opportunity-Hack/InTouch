@@ -77,42 +77,22 @@
             </objects>
             <point key="canvasLocation" x="2612" y="611"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--New Task Navigation View Controller-->
         <scene sceneID="W6d-T7-i9O">
             <objects>
-                <navigationController id="lGH-Aw-d57" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hdt-N0-hMd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="lGH-Aw-d57" customClass="NewTaskNavigationViewController" customModule="InTouch" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="upu-UT-I3A">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
                     </navigationBar>
                     <connections>
-                        <segue destination="2UV-wq-Fg7" kind="relationship" relationship="rootViewController" id="fsa-Zv-ySI"/>
+                        <segue destination="PmC-NY-KC9" kind="relationship" relationship="rootViewController" id="set-hb-UAD"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Hdt-N0-hMd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2612" y="1437"/>
-        </scene>
-        <!--New Task-->
-        <scene sceneID="0ak-yu-cGm">
-            <objects>
-                <viewController id="2UV-wq-Fg7" customClass="NewTaskViewController" customModule="InTouch" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="BTo-N1-eAB"/>
-                        <viewControllerLayoutGuide type="bottom" id="kV7-9V-0DO"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="MNb-Mm-G0N">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="New Task" id="cXn-bf-NZj"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LQ1-T1-xWj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3332" y="1437"/>
         </scene>
         <!--Account-->
         <scene sceneID="S7J-A8-WNG">
@@ -211,6 +191,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rAj-YE-NeD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="12" y="1071"/>
+        </scene>
+        <!--New Task View Controller-->
+        <scene sceneID="29r-PT-pr5">
+            <objects>
+                <viewController id="PmC-NY-KC9" customClass="NewTaskViewController" customModule="InTouch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YO6-mg-8Sh"/>
+                        <viewControllerLayoutGuide type="bottom" id="cU9-7B-xcQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="r1P-lE-XoL">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="2UN-bj-lvu">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </tableView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cU9-7B-xcQ" firstAttribute="top" secondItem="2UN-bj-lvu" secondAttribute="bottom" id="4hY-xE-ODb"/>
+                            <constraint firstItem="2UN-bj-lvu" firstAttribute="top" secondItem="r1P-lE-XoL" secondAttribute="top" id="ObR-4e-XMc"/>
+                            <constraint firstItem="2UN-bj-lvu" firstAttribute="leading" secondItem="r1P-lE-XoL" secondAttribute="leading" id="pKf-K0-GmO"/>
+                            <constraint firstAttribute="trailing" secondItem="2UN-bj-lvu" secondAttribute="trailing" id="rL0-aZ-pKD"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Bxz-4p-nlH"/>
+                    <connections>
+                        <outlet property="tableView" destination="2UN-bj-lvu" id="PDm-kT-rTZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7ch-Xs-OUO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3332" y="1437"/>
         </scene>
     </scenes>
     <resources>

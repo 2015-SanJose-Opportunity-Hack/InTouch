@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "62D42884716970C8E4A83AED"
+               BlueprintIdentifier = "9C1ADB26536F52ACFF394BAC"
                BuildableName = "libPods-InTouch.a"
                BlueprintName = "Pods-InTouch"
                ReferencedContainer = "container:Pods.xcodeproj">

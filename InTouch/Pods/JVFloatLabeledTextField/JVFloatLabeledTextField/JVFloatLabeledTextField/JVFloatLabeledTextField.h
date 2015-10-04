@@ -40,7 +40,6 @@
  *
  * Credits for the concept to Matt D. Smith (@mds), and his original design:  http://mattdsmith.com/float-label-pattern/
  */
-IB_DESIGNABLE
 @interface JVFloatLabeledTextField : UITextField
 
 /**
@@ -52,69 +51,59 @@ IB_DESIGNABLE
  * Padding to be applied to the y coordinate of the floating label upon presentation.
  * Defaults to zero.
  */
-@property (nonatomic) IBInspectable CGFloat floatingLabelYPadding;
-
-/**
- * Padding to be applied to the x coordinate of the floating label upon presentation.
- * Defaults to zero
- */
-@property (nonatomic) IBInspectable CGFloat floatingLabelXPadding;
+@property (nonatomic) CGFloat floatingLabelYPadding UI_APPEARANCE_SELECTOR;
 
 /**
  * Padding to be applied to the y coordinate of the placeholder.
  * Defaults to zero.
  */
-@property (nonatomic) IBInspectable CGFloat placeholderYPadding;
+@property (nonatomic) CGFloat placeholderYPadding UI_APPEARANCE_SELECTOR;
 
 /**
  * Font to be applied to the floating label. 
- * Defaults to the first applicable of the following:
- * - the custom specified attributed placeholder font at 70% of its size
- * - the custom specified textField font at 70% of its size
+ * Defaults to `[UIFont boldSystemFontOfSize:12.0f]`.
+ * Provided for the convenience of using as an appearance proxy.
  */
-@property (nonatomic, strong) UIFont * floatingLabelFont;
+@property (nonatomic, strong) UIFont * floatingLabelFont UI_APPEARANCE_SELECTOR;
 
 /**
  * Text color to be applied to the floating label. 
  * Defaults to `[UIColor grayColor]`.
+ * Provided for the convenience of using as an appearance proxy.
  */
-@property (nonatomic, strong) IBInspectable UIColor * floatingLabelTextColor;
+@property (nonatomic, strong) UIColor * floatingLabelTextColor UI_APPEARANCE_SELECTOR;
 
 /**
  * Text color to be applied to the floating label while the field is a first responder.
  * Tint color is used by default if an `floatingLabelActiveTextColor` is not provided.
  */
-@property (nonatomic, strong) IBInspectable UIColor * floatingLabelActiveTextColor;
+@property (nonatomic, strong) UIColor * floatingLabelActiveTextColor UI_APPEARANCE_SELECTOR;
 
 /**
  * Indicates whether the floating label's appearance should be animated regardless of first responder status.
  * By default, animation only occurs if the text field is a first responder.
+ * Non-zero values indicate truthiness. (BOOL cannot be used with UI_APPEARANCE_SELECTOR on iOS 7).
  */
-@property (nonatomic, assign) IBInspectable BOOL animateEvenIfNotFirstResponder;
+@property (nonatomic, assign) NSInteger animateEvenIfNotFirstResponder UI_APPEARANCE_SELECTOR;
 
 /**
  * Duration of the animation when showing the floating label. 
  * Defaults to 0.3 seconds.
  */
-@property (nonatomic, assign) NSTimeInterval floatingLabelShowAnimationDuration;
+@property (nonatomic, assign) NSTimeInterval floatingLabelShowAnimationDuration UI_APPEARANCE_SELECTOR;
 
 /**
  * Duration of the animation when hiding the floating label. 
  * Defaults to 0.3 seconds.
  */
-@property (nonatomic, assign) NSTimeInterval floatingLabelHideAnimationDuration;
+@property (nonatomic, assign) NSTimeInterval floatingLabelHideAnimationDuration UI_APPEARANCE_SELECTOR;
 
 /**
  * Indicates whether the clearButton position is adjusted to align with the text
  * Defaults to 1.
+ * Non-zero values indicate truthiness. (BOOL cannot be used with UI_APPEARANCE_SELECTOR on iOS 7).
  */
-@property (nonatomic, assign) IBInspectable BOOL adjustsClearButtonRect;
-
-/**
- * Indicates whether or not to drop the baseline when entering text. Setting to YES (not the default) means the standard greyed-out placeholder will be aligned with the entered text
- * Defaults to NO (standard placeholder will be above whatever text is entered)
- */
-@property (nonatomic, assign) IBInspectable BOOL keepBaseline;
+@property (nonatomic, assign) NSInteger adjustsClearButtonRect UI_APPEARANCE_SELECTOR;
 
 /**
  *  Sets the placeholder and the floating title

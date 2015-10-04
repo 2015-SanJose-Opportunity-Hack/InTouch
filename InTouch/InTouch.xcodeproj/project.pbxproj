@@ -16,6 +16,8 @@
 		2C90BEFA1BC0C10700397FEA /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C90BEF91BC0C10700397FEA /* AccountViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		2C90BEFC1BC0C23200397FEA /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C90BEFB1BC0C23200397FEA /* NewTaskViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		2C90BEFE1BC0C6BF00397FEA /* TaskCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C90BEFD1BC0C6BF00397FEA /* TaskCardTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		2C90BF001BC0EB1700397FEA /* DateAndTimeValueTrasformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C90BEFF1BC0EB1700397FEA /* DateAndTimeValueTrasformer.swift */; settings = {ASSET_TAGS = (); }; };
+		2C90BF071BC0F7D500397FEA /* FloatLabeledTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C90BF061BC0F7D500397FEA /* FloatLabeledTextFieldCell.swift */; settings = {ASSET_TAGS = (); }; };
 		2CD8303D1BC0A63E00D59544 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD8303C1BC0A63E00D59544 /* AppDelegate.swift */; };
 		2CD8303F1BC0A63E00D59544 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD8303E1BC0A63E00D59544 /* ViewController.swift */; };
 		2CD830421BC0A63E00D59544 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CD830401BC0A63E00D59544 /* Main.storyboard */; };
@@ -55,6 +57,8 @@
 		2C90BEF91BC0C10700397FEA /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		2C90BEFB1BC0C23200397FEA /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		2C90BEFD1BC0C6BF00397FEA /* TaskCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCardTableViewCell.swift; sourceTree = "<group>"; };
+		2C90BEFF1BC0EB1700397FEA /* DateAndTimeValueTrasformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateAndTimeValueTrasformer.swift; sourceTree = "<group>"; };
+		2C90BF061BC0F7D500397FEA /* FloatLabeledTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatLabeledTextFieldCell.swift; sourceTree = "<group>"; };
 		2CD830391BC0A63E00D59544 /* InTouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InTouch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CD8303C1BC0A63E00D59544 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CD8303E1BC0A63E00D59544 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -144,11 +148,13 @@
 				2C90BEE81BC0A94B00397FEA /* TasksTableViewController.swift */,
 				2C90BEEA1BC0A9C200397FEA /* LoginViewController.swift */,
 				2C90BEFB1BC0C23200397FEA /* NewTaskViewController.swift */,
+				2C90BF061BC0F7D500397FEA /* FloatLabeledTextFieldCell.swift */,
 				2CD830461BC0A63E00D59544 /* Assets.xcassets */,
 				2CD830481BC0A63E00D59544 /* LaunchScreen.storyboard */,
 				2CD8304B1BC0A63E00D59544 /* Info.plist */,
 				2CD830431BC0A63E00D59544 /* InTouch.xcdatamodeld */,
 				2C90BEEF1BC0AE5D00397FEA /* InTouch-Bridging-Header.h */,
+				2C90BEFF1BC0EB1700397FEA /* DateAndTimeValueTrasformer.swift */,
 				2C90BEF01BC0B34B00397FEA /* DynamicColor */,
 			);
 			path = InTouch;
@@ -366,10 +372,12 @@
 				2C90BEFC1BC0C23200397FEA /* NewTaskViewController.swift in Sources */,
 				2CD8303D1BC0A63E00D59544 /* AppDelegate.swift in Sources */,
 				2C90BEF61BC0BF7700397FEA /* TabBarViewController.swift in Sources */,
+				2C90BF071BC0F7D500397FEA /* FloatLabeledTextFieldCell.swift in Sources */,
 				2C90BEFE1BC0C6BF00397FEA /* TaskCardTableViewCell.swift in Sources */,
 				2C90BEEB1BC0A9C200397FEA /* LoginViewController.swift in Sources */,
 				2C90BEFA1BC0C10700397FEA /* AccountViewController.swift in Sources */,
 				2C90BEF41BC0B34B00397FEA /* UIColor.swift in Sources */,
+				2C90BF001BC0EB1700397FEA /* DateAndTimeValueTrasformer.swift in Sources */,
 				2C90BEF81BC0C05E00397FEA /* ChatViewController.swift in Sources */,
 				2CD830451BC0A63E00D59544 /* InTouch.xcdatamodeld in Sources */,
 			);
@@ -443,7 +451,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.chunweichen.InTouchOppotunity";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development IOS Push Services: com.chunweichen.InTouchOppotunity";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -488,7 +497,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development IOS Push Services: com.chunweichen.InTouchOppotunity";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development IOS Push Services: com.chunweichen.InTouchOppotunity";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -519,7 +529,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = InTouch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.chunweichen.InTouch;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chunweichen.InTouchOppotunity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "InTouch-Bridging-Header.h";
@@ -536,7 +546,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = InTouch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.chunweichen.InTouch;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chunweichen.InTouchOppotunity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "InTouch-Bridging-Header.h";
