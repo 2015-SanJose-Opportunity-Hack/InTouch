@@ -16,5 +16,6 @@
 #import "TPKeyboardAvoidingScrollView.h"
 #import <Parse/Parse.h>
 #import <Bolts/Bolts.h>
+#import "SLKTextViewController.h"
 
 #endif /* InTouch_Bridging_Header_h */

@@ -18,8 +18,11 @@
 		2C90BEFE1BC0C6BF00397FEA /* TaskCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C90BEFD1BC0C6BF00397FEA /* TaskCardTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		2C90BF001BC0EB1700397FEA /* DateAndTimeValueTrasformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C90BEFF1BC0EB1700397FEA /* DateAndTimeValueTrasformer.swift */; settings = {ASSET_TAGS = (); }; };
 		2C90BF071BC0F7D500397FEA /* FloatLabeledTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C90BF061BC0F7D500397FEA /* FloatLabeledTextFieldCell.swift */; settings = {ASSET_TAGS = (); }; };
+		2CCA22231BC194BD0056C192 /* SlackChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCA22221BC194BD0056C192 /* SlackChatViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		2CCA22251BC1A7F50056C192 /* ConversationBubbleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCA22241BC1A7F50056C192 /* ConversationBubbleTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		2CCA22281BC1B4070056C192 /* VKStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CCA22271BC1B4070056C192 /* VKStatistics.m */; settings = {ASSET_TAGS = (); }; };
+		2CCA222A1BC1B5410056C192 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CCA22291BC1B5410056C192 /* CoreMotion.framework */; };
 		2CD8303D1BC0A63E00D59544 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD8303C1BC0A63E00D59544 /* AppDelegate.swift */; };
-		2CD8303F1BC0A63E00D59544 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD8303E1BC0A63E00D59544 /* ViewController.swift */; };
 		2CD830421BC0A63E00D59544 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CD830401BC0A63E00D59544 /* Main.storyboard */; };
 		2CD830451BC0A63E00D59544 /* InTouch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2CD830431BC0A63E00D59544 /* InTouch.xcdatamodeld */; };
 		2CD830471BC0A63E00D59544 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CD830461BC0A63E00D59544 /* Assets.xcassets */; };
@@ -59,9 +62,13 @@
 		2C90BEFD1BC0C6BF00397FEA /* TaskCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCardTableViewCell.swift; sourceTree = "<group>"; };
 		2C90BEFF1BC0EB1700397FEA /* DateAndTimeValueTrasformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateAndTimeValueTrasformer.swift; sourceTree = "<group>"; };
 		2C90BF061BC0F7D500397FEA /* FloatLabeledTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatLabeledTextFieldCell.swift; sourceTree = "<group>"; };
+		2CCA22221BC194BD0056C192 /* SlackChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlackChatViewController.swift; sourceTree = "<group>"; };
+		2CCA22241BC1A7F50056C192 /* ConversationBubbleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationBubbleTableViewCell.swift; sourceTree = "<group>"; };
+		2CCA22261BC1B4070056C192 /* VKStatistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKStatistics.h; sourceTree = "<group>"; };
+		2CCA22271BC1B4070056C192 /* VKStatistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VKStatistics.m; sourceTree = "<group>"; };
+		2CCA22291BC1B5410056C192 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		2CD830391BC0A63E00D59544 /* InTouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InTouch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CD8303C1BC0A63E00D59544 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2CD8303E1BC0A63E00D59544 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2CD830411BC0A63E00D59544 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2CD830441BC0A63E00D59544 /* InTouch.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = InTouch.xcdatamodel; sourceTree = "<group>"; };
 		2CD830461BC0A63E00D59544 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -83,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CCA222A1BC1B5410056C192 /* CoreMotion.framework in Frameworks */,
 				BEE581D608628D4FB0833688 /* libPods-InTouch.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,10 +147,13 @@
 			isa = PBXGroup;
 			children = (
 				2CD8303C1BC0A63E00D59544 /* AppDelegate.swift */,
+				2CCA22261BC1B4070056C192 /* VKStatistics.h */,
+				2CCA22271BC1B4070056C192 /* VKStatistics.m */,
+				2CCA22221BC194BD0056C192 /* SlackChatViewController.swift */,
 				2C90BEF71BC0C05E00397FEA /* ChatViewController.swift */,
-				2CD8303E1BC0A63E00D59544 /* ViewController.swift */,
 				2CD830401BC0A63E00D59544 /* Main.storyboard */,
 				2C90BEF51BC0BF7700397FEA /* TabBarViewController.swift */,
+				2CCA22241BC1A7F50056C192 /* ConversationBubbleTableViewCell.swift */,
 				2C90BEFD1BC0C6BF00397FEA /* TaskCardTableViewCell.swift */,
 				2C90BEF91BC0C10700397FEA /* AccountViewController.swift */,
 				2C90BEE81BC0A94B00397FEA /* TasksTableViewController.swift */,
@@ -181,6 +192,7 @@
 		84FA26FC99C5D5D3EC06092D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2CCA22291BC1B5410056C192 /* CoreMotion.framework */,
 				6F9B1962A402A88139407057 /* libPods-InTouch.a */,
 			);
 			name = Frameworks;
@@ -368,7 +380,6 @@
 			files = (
 				2C90BEE91BC0A94B00397FEA /* TasksTableViewController.swift in Sources */,
 				2C90BEF31BC0B34B00397FEA /* HSL.swift in Sources */,
-				2CD8303F1BC0A63E00D59544 /* ViewController.swift in Sources */,
 				2C90BEFC1BC0C23200397FEA /* NewTaskViewController.swift in Sources */,
 				2CD8303D1BC0A63E00D59544 /* AppDelegate.swift in Sources */,
 				2C90BEF61BC0BF7700397FEA /* TabBarViewController.swift in Sources */,
@@ -376,10 +387,13 @@
 				2C90BEFE1BC0C6BF00397FEA /* TaskCardTableViewCell.swift in Sources */,
 				2C90BEEB1BC0A9C200397FEA /* LoginViewController.swift in Sources */,
 				2C90BEFA1BC0C10700397FEA /* AccountViewController.swift in Sources */,
+				2CCA22251BC1A7F50056C192 /* ConversationBubbleTableViewCell.swift in Sources */,
 				2C90BEF41BC0B34B00397FEA /* UIColor.swift in Sources */,
 				2C90BF001BC0EB1700397FEA /* DateAndTimeValueTrasformer.swift in Sources */,
 				2C90BEF81BC0C05E00397FEA /* ChatViewController.swift in Sources */,
+				2CCA22281BC1B4070056C192 /* VKStatistics.m in Sources */,
 				2CD830451BC0A63E00D59544 /* InTouch.xcdatamodeld in Sources */,
+				2CCA22231BC194BD0056C192 /* SlackChatViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

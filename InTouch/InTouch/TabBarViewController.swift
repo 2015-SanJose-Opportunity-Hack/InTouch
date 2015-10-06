@@ -15,7 +15,6 @@ class TabBarViewController: UITabBarController {
         
         (self.tabBar.items as [UITabBarItem]!)[0].image = UIImage(named: "tasksTabBarIcon")
         (self.tabBar.items as [UITabBarItem]!)[1].image = UIImage(named: "chatTabBarIcon")
-        
     }
     
     override func viewWillAppear(animated: Bool) {

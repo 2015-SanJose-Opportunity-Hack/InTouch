@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TasksTableViewController: UITableViewController {
+class TasksTableViewController: UITableViewController, UITabBarDelegate {
     
     var tasks:[PFObject] = []
     
@@ -20,6 +20,7 @@ class TasksTableViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = addButton
         
         let accountButton = UIBarButtonItem(image: UIImage(named: "accountBarButtonIcon"), style: UIBarButtonItemStyle.Plain, target: self, action: "accountButtonTapped")
+        accountButton.accessibilityLabel = "Account"
         self.navigationItem.leftBarButtonItem = accountButton
         
         self.tableView.registerClass(TaskCardTableViewCell.self, forCellReuseIdentifier: "TaskCardTableViewCell")
@@ -34,11 +35,18 @@ class TasksTableViewController: UITableViewController {
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor(red:0.14, green:0.22, blue:0.51, alpha:1)]
         self.navigationController!.navigationBar.titleTextAttributes = titleDict as? [String : AnyObject]
 
+//        if (PFUser.currentUser() != nil){
+//            if (PFUser.currentUser()!["role"] as? String == "elder"){
+////                tabBar.selectedItem = (self.tabBar.items as [UITabBarItem]!)[1]
+//            }
+//        }
         
         
         if (PFUser.currentUser() != nil){
             self.loadTasks()
         }
+        
+        
 
     }
     
@@ -66,27 +74,35 @@ class TasksTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("TaskCardTableViewCell") as! TaskCardTableViewCell
-        if (indexPath.row % 2 == 0){
-            cell.cardView.backgroundColor = UIColor(red:0.14, green:0.22, blue:0.51, alpha:1)
-            cell.cardView.layer.borderColor = UIColor(red:0.14, green:0.22, blue:0.51, alpha:1).CGColor
-        }
-        else{
-            cell.cardView.backgroundColor = UIColor(red:0, green:0.6, blue:0.89, alpha:1)
-            cell.cardView.layer.borderColor = UIColor(red:0, green:0.6, blue:0.89, alpha:1).CGColor
-        }
         let task = self.tasks[indexPath.row]
         cell.taskNameLabel.text = task["name"] as? String
         var constraintModifierString = ""
         if (task["constraintType"] as? String == "Time"){
-            cell.mainConstraintLabel.text = task["constraintTime"] as? String
+            cell.cardView.backgroundColor = UIColor(red:0, green:0.6, blue:0.89, alpha:1)
+            cell.cardView.layer.borderColor = UIColor(red:0, green:0.6, blue:0.89, alpha:1).CGColor
+            var hourString = ""
+            let minuteString = (task["constraintTime"] as! String).characters.split{$0 == ":"}.map(String.init)[1]
+            hourString = (task["constraintTime"] as! String).characters.split{$0 == ":"}.map(String.init)[0]
+            var ampmString = "AM"
+            if (Int(hourString) > 12){
+                hourString = "\(Int(hourString)! - 12)"
+                ampmString = "PM"
+            }
+            else{
+                hourString = "\(Int(hourString)!)"
+            }
+            cell.mainConstraintLabel.text = "\(hourString):\(minuteString) \(ampmString)"
             let modifierString = task["maxDelayedMinutes"]
             constraintModifierString = "\(modifierString)-minute response window"
         }
         else{
             let constraintActivityNumber = task["constraintActivity"] as? Int
             cell.mainConstraintLabel.text = "\(constraintActivityNumber!) MINS"
+            cell.mainConstraintLabel.accessibilityLabel = "\(constraintActivityNumber!) minutes"
             let modifierString = task["maxSlackedMinutes"]
             constraintModifierString = "\(modifierString)-minute tolerance"
+            cell.cardView.backgroundColor = UIColor(red:0.14, green:0.22, blue:0.51, alpha:1)
+            cell.cardView.layer.borderColor = UIColor(red:0.14, green:0.22, blue:0.51, alpha:1).CGColor
         }
         let triggerArray = task["constraintTriggers"] as! [String]
         var triggersString = ""
@@ -96,7 +112,7 @@ class TasksTableViewController: UITableViewController {
                 triggersString += ", "
             }
         }
-        cell.rangeAndTriggerLabel.text = "\(constraintModifierString)\n\(triggersString) if no response."
+        cell.rangeAndTriggerLabel.text = "\(constraintModifierString).\n\(triggersString) if no response."
         return cell
     }
 

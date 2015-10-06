@@ -57,12 +57,12 @@ class TaskCardTableViewCell: UITableViewCell {
         self.rangeAndTriggerLabel.translatesAutoresizingMaskIntoConstraints = false
         self.rangeAndTriggerLabel.numberOfLines = 0
         self.rangeAndTriggerLabel.text = "RANGE AND TRIGGER LABEL"
-        self.rangeAndTriggerLabel.font = UIFont.systemFontOfSize(16, weight: UIFontWeightLight)
+        self.rangeAndTriggerLabel.font = UIFont.systemFontOfSize(18, weight: UIFontWeightLight)
         self.rangeAndTriggerLabel.textColor = UIColor.whiteColor()
         self.cardView.addSubview(self.rangeAndTriggerLabel)
         
         let viewsDictionary = ["cardView":self.cardView, "mainConstraintLabel":self.mainConstraintLabel, "taskNameLabel":self.taskNameLabel, "separator":self.separator, "rangeAndTriggerLabel":self.rangeAndTriggerLabel]
-        let metricsDictionary = ["sideMargin": 7.5, "verticalMargin":5, "cardPaddingLeftShallow":18, "cardPaddingLeftDeep":20, "cardPaddingRight":10, "cardPaddingTop":19, "cardPaddingBottom":18]
+        let metricsDictionary = ["sideMargin": 7.5, "verticalMargin":5, "cardPaddingLeftShallow":18, "cardPaddingLeftDeep":20, "cardPaddingRight":10, "cardPaddingTop":19, "cardPaddingBottom":22]
         
         let cardViewHorizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-sideMargin-[cardView]-sideMargin-|", options: [NSLayoutFormatOptions.AlignAllTop, NSLayoutFormatOptions.AlignAllBottom], metrics: metricsDictionary, views: viewsDictionary)
         let cardViewVerticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-verticalMargin-[cardView]-verticalMargin-|", options: NSLayoutFormatOptions.AlignAllCenterX, metrics: metricsDictionary, views: viewsDictionary)
@@ -83,12 +83,18 @@ class TaskCardTableViewCell: UITableViewCell {
         
         self.selectionStyle = UITableViewCellSelectionStyle.None
         
+        self.cardView.accessibilityElements = [self.mainConstraintLabel, self.taskNameLabel, self.rangeAndTriggerLabel]
+
+    
     }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
     }
+
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

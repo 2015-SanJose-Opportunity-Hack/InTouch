@@ -14,7 +14,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var currentAccelX:Double!
+    var currentAccelY:Double!
+    var currentAccelZ:Double!
+    var currentRotX:Double!
+    var currentRotY:Double!
+    var currentRotZ:Double!
+    
+    var previousAccelX:Double!
+    var previousAccelY:Double!
+    var previousAccelZ:Double!
+    var previousMaxRotX:Double!
+    var previousMaxRotY:Double!
+    var previousMaxRotZ:Double!
 
+    var conn:NSURLConnection!
+    var deviation_data:NSMutableDictionary!
+    var zero:NSNumber!
+
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         self.window?.tintColor = UIColor(red:0, green:0.6, blue:0.89, alpha:1)
@@ -31,8 +49,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
         PFInstallation.currentInstallation().saveInBackground()
-
-
 
         XLFormViewController.cellClassesForRowDescriptorTypes()[XLFormRowDescriptorTypeFloatLabeledTextField] = FloatLabeledTextFieldCell.self
 
@@ -211,6 +227,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         }
         else if (identifier == "affirmAndText"){
+            print(userInfo)
             let taskId = userInfo["taskId"] as! String
             let taskQuery = PFQuery(className: "Task")
             taskQuery.whereKey("objectId", equalTo: taskId)
@@ -221,7 +238,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 task["responseMessage"] = responseInfo[UIUserNotificationActionResponseTypedTextKey]!
                 let taskName = task["name"] as! String
                 let data = [
-                    "alert" : "\(PFUser.currentUser()?.username) Did \(taskName) and \(responseInfo[UIUserNotificationActionResponseTypedTextKey]!)",
+                    "alert" : "\(PFUser.currentUser()!.username!) Did \(taskName) and \(responseInfo[UIUserNotificationActionResponseTypedTextKey]!)",
                     "badge" : 1,
                     "category" : "inTouchCategory"
                 ]

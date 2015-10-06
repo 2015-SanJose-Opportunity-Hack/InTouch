@@ -44,6 +44,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SlackTextViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>TPKeyboardAvoiding.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,27 +62,37 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>064605FE421AE4EE2D67EE9F33EC7A03</key>
+		<key>006ADBAD5B3C6F588FF4440BFFDA470A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>50FDCAD987EF6A6425F5F46FCC614468</key>
+		<key>0A269C211C6BB3356B36AF047357A66F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5AC29E20261828E467A2FDC407662DF9</key>
+		<key>1233CE17C48719D7C5C6AA4573BC2A79</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1B93E28F7E893ACA67913FA3794B286F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2605876A4452B922CD96BDA1D075F993</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>424A050634FDF1C79B7710B6FADB4089</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>61C0538E68CDDEDCF4B7DE9EC4A2CD43</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6C09B1E1A492CA7021C57DFD35B58950</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,17 +107,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BEE2B3DB52E98FAC1A574D5CD6C14306</key>
+		<key>B39D9731ED312348279CD73E51562DA6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D781F1EFD9A43FD15EDB4E935A104D7E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F38B27C0F2EE90647A7E72DDB1623454</key>
+		<key>DAB6B18CF18075BAA76B56462887DA6F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

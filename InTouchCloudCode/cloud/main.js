@@ -28,9 +28,10 @@ Parse.Cloud.afterSave("Task", function(request) {
                     sound: "",
                     subtitle: "",
                     title: "",
-                    category: "inTouchCategory"
-                },
-                push_time: finalPushTime
+                    category: "inTouchCategory",
+                    taskId: request.object.id,
+                    push_time: pushTime
+                }
             }, {
                 success: function() {
                     console.log("success!");

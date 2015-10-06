@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B22c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -15,8 +16,36 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppIconPDF" translatesAutoresizingMaskIntoConstraints="NO" id="er7-kg-SrW">
+                                <rect key="frame" x="180" y="180" width="240" height="240"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="er7-kg-SrW" secondAttribute="height" multiplier="1:1" id="H7n-Jv-Beh"/>
+                                    <constraint firstAttribute="width" constant="240" id="ZFw-vf-M8x"/>
+                                    <constraint firstAttribute="height" constant="240" id="qOr-8X-6sa"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="InTouch" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZv-Yg-I8y">
+                                <rect key="frame" x="239" y="428" width="123" height="35"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="123" id="G13-9d-Mko"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="32"/>
+                                <color key="textColor" red="0.14117647058823529" green="0.22352941176470589" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="er7-kg-SrW" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="BHC-wk-6jo"/>
+                            <constraint firstItem="qZv-Yg-I8y" firstAttribute="top" secondItem="er7-kg-SrW" secondAttribute="bottom" constant="8" id="UEn-f2-pEa"/>
+                            <constraint firstItem="qZv-Yg-I8y" firstAttribute="centerX" secondItem="er7-kg-SrW" secondAttribute="centerX" id="j9D-z0-DxY"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="qZv-Yg-I8y" secondAttribute="bottom" constant="137" id="m75-xj-3c5"/>
+                            <constraint firstItem="er7-kg-SrW" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="mo4-Na-MMC"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -24,4 +53,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="AppIconPDF" width="240" height="240"/>
+    </resources>
 </document>
